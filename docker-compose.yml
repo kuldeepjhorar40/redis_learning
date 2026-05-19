@@ -1,0 +1,22 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: redis-one
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: ["redis-server" , "--appendonly" , "yes"]
+  mongo:
+    image: mongo:7
+    container_name: mongo-seven
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: wonderlust
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  redis-data:
+  mongo-data:
